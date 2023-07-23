@@ -1,12 +1,9 @@
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useState } from "react";
+import { useAuth } from "./useAuth"; // Make sure to import from useAuth.js
 import { Route, useNavigate } from "react-router-dom";
-import { useAuth } from "./AuthContext";
 import { Navigate } from "react-router-dom";
 
-
-const AuthContext = createContext();
-
-
+export const AuthContext = createContext();
 
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);

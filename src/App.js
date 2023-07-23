@@ -1,6 +1,6 @@
 import React from "react";
 import "./components/App.css";
-import { Routes, Route } from "react-router-dom"; // Don't forget to import Navigate
+import { Routes, Route } from "react-router-dom";
 import Home from "./components/Home";
 import LoginPage from "./components/LoginPage";
 import RegistrationPage from "./components/RegistrationPage";
@@ -16,27 +16,27 @@ function App() {
   };
 
   return (
-    <AuthProvider>
-      <Routes>
-        <Fragment>
-          <Route path="/" element={<Home welcomeMessage={welcomeMessage} />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route
-            path="/register"
-            element={
-              <RegistrationPage
-                onRegistrationSuccess={handleRegistrationSuccess}
-              />
-            }
-          />
-          <Route path="/forgot-password" element={<ForgotPasswordPage />} />
-          <PrivateRoute path="/dashboard" element={<Dashboard />} />{" "}
-          {/* Use PrivateRoute */}
-          <PrivateRoute path="/add-website" element={<AddWebsite />} />{" "}
-          {/* Use PrivateRoute */}
-        </Fragment>
-      </Routes>
-    </AuthProvider>
+    <>
+      <AuthProvider>
+        <Routes>
+          <>
+            <Route path="/" element={<Home welcomeMessage={welcomeMessage} />} />
+            <Route path="/login" element={<LoginPage />} />
+            <Route
+              path="/register"
+              element={
+                <RegistrationPage
+                  onRegistrationSuccess={handleRegistrationSuccess}
+                />
+              }
+            />
+            <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+            <PrivateRoute path="/dashboard" element={<Dashboard />} />
+            <PrivateRoute path="/add-website" element={<AddWebsite />} />
+          </>
+        </Routes>
+      </AuthProvider>
+    </>
   );
 }
 
