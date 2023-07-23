@@ -1,9 +1,9 @@
-import React, { useState } from "react";
-import { useAuth } from "./AuthContext";
+import React, { useState, useContext } from "react";
+import { AuthContext } from "./AuthContext";
 import { useNavigate } from "react-router-dom";
 
 const AddWebsite = () => {
-  const auth = useAuth();
+  const auth = useContext(AuthContext);
   const navigate = useNavigate();
 
   const [website, setWebsite] = useState("");
@@ -27,7 +27,7 @@ const AddWebsite = () => {
     const updatedData = [...(userData.savedData || []), newData];
 
     // Update the user's data in the AuthContext
-    auth.updateUser({ ...userData, savedData: updatedData });
+    auth.setUser({ ...userData, savedData: updatedData });
 
     // Reset the form fields
     setWebsite("");
@@ -42,7 +42,26 @@ const AddWebsite = () => {
     <div>
       <h1>Add Website</h1>
       <form onSubmit={handleSubmit}>
-        {/* Form fields and submit button */}
+        {/* Form fields for website, loginID, password */}
+        <input
+          type="text"
+          placeholder="Website"
+          value={website}
+          onChange={(e) => setWebsite(e.target.value)}
+        />
+        <input
+          type="text"
+          placeholder="Login ID"
+          value={loginID}
+          onChange={(e) => setLoginID(e.target.value)}
+        />
+        <input
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <button type="submit">Submit</button>
       </form>
     </div>
   );

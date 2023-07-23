@@ -1,5 +1,4 @@
-import React, { createContext, useState } from "react";
-import { useAuth } from "./useAuth"; // Make sure to import from useAuth.js
+import React, { createContext, useContext, useState } from "react";
 import { Route, useNavigate } from "react-router-dom";
 import { Navigate } from "react-router-dom";
 
@@ -36,6 +35,10 @@ export function AuthProvider({ children }) {
       {children}
     </AuthContext.Provider>
   );
+}
+
+export function useAuth() {
+  return useContext(AuthContext);
 }
 
 export function PrivateRoute({ element, ...rest }) {

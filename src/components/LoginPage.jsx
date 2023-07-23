@@ -1,15 +1,15 @@
 import React, { useState } from "react";
-import { useAuth } from "./AuthContext"; // Import the AuthContext
-import { useNavigate } from "react-router-dom"; // Import the useNavigate hook
+import { useAuth } from "./AuthContext";
+import { useNavigate } from "react-router-dom";
 
-const LoginPage = (props) => {
+const LoginPage = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const auth = useAuth(); // Use the useAuth hook
   const navigate = useNavigate(); // Add this line to use the useNavigate hook
-  
-  const handleLogin = (props) => {
+
+  const handleLogin = () => {
     // Attempt login using the login function from the AuthContext
     const isAuthenticated = auth.login(username, password);
 
@@ -19,7 +19,6 @@ const LoginPage = (props) => {
 
       // Redirect to the dashboard after successful login
       navigate("/dashboard");
-      navigate("/dashboard"); // Use the navigate function to redirect to the dashboard
     } else {
       // Set the error message for wrong login ID or password
       setError("Wrong Login ID or Password. Please try again.");

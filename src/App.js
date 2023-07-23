@@ -1,6 +1,6 @@
 import React from "react";
 import "./components/App.css";
-import { Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom"; // Rename BrowserRouter alias to Router
 import Home from "./components/Home";
 import LoginPage from "./components/LoginPage";
 import RegistrationPage from "./components/RegistrationPage";
@@ -12,31 +12,29 @@ import { AuthProvider, PrivateRoute } from "./components/AuthContext";
 function App() {
   const welcomeMessage = "Welcome to our Website!";
   const handleRegistrationSuccess = () => {
-    console.log("Registration successful. Redirecting to login page...");
+    console.log("Registration successful. Redirecting to the login page...");
   };
 
   return (
-    <>
-      <AuthProvider>
+    <AuthProvider>
+      <Router>
         <Routes>
-          <>
-            <Route path="/" element={<Home welcomeMessage={welcomeMessage} />} />
-            <Route path="/login" element={<LoginPage />} />
-            <Route
-              path="/register"
-              element={
-                <RegistrationPage
-                  onRegistrationSuccess={handleRegistrationSuccess}
-                />
-              }
-            />
-            <Route path="/forgot-password" element={<ForgotPasswordPage />} />
-            <PrivateRoute path="/dashboard" element={<Dashboard />} />
-            <PrivateRoute path="/add-website" element={<AddWebsite />} />
-          </>
+          <Route path="/" element={<Home welcomeMessage={welcomeMessage} />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route
+            path="/register"
+            element={
+              <RegistrationPage
+                onRegistrationSuccess={handleRegistrationSuccess}
+              />
+            }
+          />
+          <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+          <PrivateRoute path="/dashboard" element={<Dashboard />} />
+          <PrivateRoute path="/add-website" element={<AddWebsite />} />
         </Routes>
-      </AuthProvider>
-    </>
+      </Router>
+    </AuthProvider>
   );
 }
 
