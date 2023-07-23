@@ -1,0 +1,32 @@
+.add-website-container {
+    margin-top: 20px;
+    border: 1px solid #ccc;
+    padding: 20px;
+  }
+  
+  .add-website-form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .add-website-form label {
+    margin-bottom: 10px;
+  }
+  
+  .add-website-form input {
+    padding: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .add-website-form button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .add-website-form button:hover {
+    background-color: #45a049;
+  }
+  
