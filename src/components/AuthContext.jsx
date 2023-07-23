@@ -1,6 +1,6 @@
 // AuthContext.js
 import React, { createContext, useContext, useState } from "react";
-import { useNavigate } from "react-router-dom"; // Don't forget to import useNavigate
+import { Route, Navigate, useNavigate } from "react-router-dom"; // Don't forget to import useNavigate
 
 const AuthContext = createContext();
 
@@ -33,22 +33,20 @@ export function AuthProvider({ children }) {
   const isAuthenticated = () => {
     return user !== null;
   };
-
-  const PrivateRoute = ({ element, ...rest }) => {
-    const navigate = useNavigate(); // Use the useNavigate hook
-  
-    return auth.isAuthenticated() ? (
-      <Route {...rest} element={element} />
-    ) : (
-      // Use navigate() function for redirection
-      <>{navigate("/login")}</>
-    );
-  };
-  
-
   return (
-    <AuthContext.Provider value={{ user, login, logout, isAuthenticated }}>
+    <AuthContext.Provider value={{ user, login, logout, isAuthenticated, navigate }}>
       {children}
     </AuthContext.Provider>
+  );
+}
+
+export function PrivateRoute({ element, ...rest }) {
+  const auth = useAuth(); // Access the useAuth hook
+
+  return auth.isAuthenticated() ? (
+    <Route {...rest} element={element} />
+  ) : (
+    
+    Navigate("/login")
   );
 }
