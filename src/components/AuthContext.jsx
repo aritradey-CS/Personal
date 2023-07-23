@@ -1,16 +1,16 @@
-// AuthContext.js
 import React, { createContext, useContext, useState } from "react";
-import { Route, Navigate, useNavigate } from "react-router-dom"; // Don't forget to import useNavigate
+import { Route, useNavigate } from "react-router-dom";
+import { useAuth } from "./AuthContext";
+import { Navigate } from "react-router-dom";
+
 
 const AuthContext = createContext();
 
-export function useAuth() {
-  return useContext(AuthContext);
-}
+
 
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
-  const navigate = useNavigate(); // Initialize useNavigate
+  const navigate = useNavigate();
 
   const login = (username, password) => {
     // Retrieve the stored data from localStorage
@@ -33,20 +33,21 @@ export function AuthProvider({ children }) {
   const isAuthenticated = () => {
     return user !== null;
   };
+
   return (
-    <AuthContext.Provider value={{ user, login, logout, isAuthenticated, navigate }}>
+    <AuthContext.Provider value={{ user, login, logout, isAuthenticated }}>
       {children}
     </AuthContext.Provider>
   );
 }
 
 export function PrivateRoute({ element, ...rest }) {
-  const auth = useAuth(); // Access the useAuth hook
+  const auth = useAuth();
 
   return auth.isAuthenticated() ? (
     <Route {...rest} element={element} />
   ) : (
-    
-    Navigate("/login")
+    // Return null when the user is not authenticated
+    <Navigate to="/login" replace={true} />
   );
 }
