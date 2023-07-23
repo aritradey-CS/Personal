@@ -1,6 +1,6 @@
 import React from "react";
 import "./components/App.css";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom"; // Rename BrowserRouter alias to Router
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Home from "./components/Home";
 import LoginPage from "./components/LoginPage";
 import RegistrationPage from "./components/RegistrationPage";
@@ -26,14 +26,12 @@ function App() {
             element={
               <RegistrationPage
                 onRegistrationSuccess={handleRegistrationSuccess}
-              />
-            }
-          />
+              />    }/>
           <Route path="/forgot-password" element={<ForgotPasswordPage />} />
-          <PrivateRoute path="/dashboard" element={<Dashboard />} />
-          <PrivateRoute path="/add-website" element={<AddWebsite />} />
         </Routes>
       </Router>
+          <PrivateRoute path="/dashboard" element={<Dashboard />} />
+          <PrivateRoute path="/add-website" element={<AddWebsite />} />
     </AuthProvider>
   );
 }
