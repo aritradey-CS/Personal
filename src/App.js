@@ -1,5 +1,5 @@
 import React from "react";
-import "./components/App.css";
+import './components/App.css';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Home from "./components/Home";
 import LoginPage from "./components/LoginPage";
@@ -16,8 +16,8 @@ function App() {
   };
 
   return (
-    <AuthProvider>
-      <Router>
+    <Router>
+      <AuthProvider>
         <Routes>
           <Route path="/" element={<Home welcomeMessage={welcomeMessage} />} />
           <Route path="/login" element={<LoginPage />} />
@@ -33,8 +33,8 @@ function App() {
           <PrivateRoute path="/dashboard" element={<Dashboard />} />
           <PrivateRoute path="/add-website" element={<AddWebsite />} />
         </Routes>
-      </Router>
-    </AuthProvider>
+      </AuthProvider>
+    </Router>
   );
 }
 
