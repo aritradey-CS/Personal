@@ -5,13 +5,13 @@ import "./dashboard.css";
 const Dashboard = () => {
   const auth = useAuth();
   const userData = auth.user;
-  const savedData = userData && userData.savedData ? userData.savedData : [];
+  const savedData = userData?.savedData || [];
 
   return (
     <div>
-      <h1>Welcome to the Dashboard</h1>
       {auth.isAuthenticated() ? (
         <>
+          <h1>Welcome to the Dashboard</h1>
           {savedData.length > 0 ? (
             <table>
               <thead>

@@ -1,14 +1,11 @@
-// RegistrationPage.jsx
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom"; // Import the Link component
 
-const RegistrationPage = (props) => {
-  const { onRegistrationSuccess } = props;
+const RegistrationPage = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [registrationSuccess, setRegistrationSuccess] = useState(false);
-  const navigate = useNavigate();
 
   const handleRegister = () => {
     // Form validation and other logic can be added here
@@ -21,15 +18,16 @@ const RegistrationPage = (props) => {
 
     // Set registrationSuccess to true
     setRegistrationSuccess(true);
-
-    // Redirect back to the home page after successful registration
-    navigate("/");
   };
 
   if (registrationSuccess) {
-    // Call the onRegistrationSuccess prop if registration is successful
-    onRegistrationSuccess();
-    return <p>Registration Successful! Please proceed to login.</p>;
+    return (
+      <>
+        <p>Registration Successful! Please proceed to login.</p>
+        {/* You can also add a link/button to redirect to the login page */}
+        <Link to="/login">Go to Login</Link>
+      </>
+    );
   }
 
   return (

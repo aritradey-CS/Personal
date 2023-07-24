@@ -26,12 +26,14 @@ function App() {
             element={
               <RegistrationPage
                 onRegistrationSuccess={handleRegistrationSuccess}
-              />    }/>
+              />
+            }
+          />
           <Route path="/forgot-password" element={<ForgotPasswordPage />} />
-        </Routes>
-      </Router>
           <PrivateRoute path="/dashboard" element={<Dashboard />} />
           <PrivateRoute path="/add-website" element={<AddWebsite />} />
+        </Routes>
+      </Router>
     </AuthProvider>
   );
 }
