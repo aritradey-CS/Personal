@@ -1,14 +1,14 @@
 // Home.jsx
 import React, { useState } from "react";
-import { useAuth } from "./AuthContext"; // Check the path here
-import { Link, useNavigate } from "react-router-dom"; // Import the Link and useNavigate components
+import { useAuth } from "./AuthContext";
+import { useNavigate, Link } from "react-router-dom"; // Import the useNavigate and Link components
 
 const Home = (props) => {
   const auth = useAuth();
   const [loginID, setLoginID] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const navigate = useNavigate();
+  const navigate = useNavigate(); // Use the useNavigate hook
 
   const handleLogin = () => {
     // Form validation and other login logic can be added here
